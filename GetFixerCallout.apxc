@@ -1,0 +1,16 @@
+
+public class GetFixerCallout {
+        
+    public static HttpResponse makeGetCallout() {
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint('http://data.fixer.io/api/latest?access_key=48f3ad2b945e8965365bd7ffa0df8158');
+        request.setMethod('GET');
+        HttpResponse response = http.send(request);
+        if (response.getStatusCode() == 200) {
+            JSON2Apex var = JSON2Apex.parse(response.getBody());
+            System.debug(var);
+        } 
+        return response;
+    }
+}
